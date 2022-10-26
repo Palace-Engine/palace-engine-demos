@@ -1,0 +1,3 @@
+[submodule "dependencies/palace-engine"]
+	path = dependencies/palace-engine
+	url = https://github.com/Palace-Engine/palace-engine.git
