@@ -6,16 +6,16 @@ int palaceMain(palace::ApplicationContext *context) {
     constexpr int WindowWidth = 256;
     constexpr int WindowHeight = 256;
 
-    palace::WindowManager *windowManager = context->windowManager();
-    windowManager->updateDisplayDevices();
-    const size_t displayDeviceCount = windowManager->displayDeviceCount();
+    palace::WindowServer *windowServer = context->windowServer();
+    windowServer->updateDisplayDevices();
+    const size_t displayDeviceCount = windowServer->displayDevices().size();
     if (displayDeviceCount == 0) {
         return -1;
     }
 
     palace::DynamicArray<palace::Window *> windows;
     for (size_t i = 0; i < displayDeviceCount; ++i) {
-        palace::DisplayDevice *displayDevice = windowManager->getDisplayDevice(i);
+        palace::DisplayDevice *displayDevice = windowServer->displayDevices()[i];
 
         std::stringstream ss;
         ss << "Window " << i << " | Palace Engine | Demo 01 | Window Spawning Demo";
@@ -27,7 +27,7 @@ int palaceMain(palace::ApplicationContext *context) {
         parameters.position = {
             displayDevice->origin().x() + displayDevice->logicalSize().w() / 2 - WindowWidth / 2,
             displayDevice->origin().y() + displayDevice->logicalSize().h() / 2 - WindowHeight / 2 };
-        windows.append(windowManager->spawnWindow(parameters));
+        windows.append(windowServer->spawnWindow(parameters));
     }
 
     bool windowsRemaining = true;
@@ -40,7 +40,7 @@ int palaceMain(palace::ApplicationContext *context) {
             }
         }
 
-        windowManager->processMessages();
+        windowServer->processMessages();
     }
 
     return 0;
