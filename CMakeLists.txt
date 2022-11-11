@@ -12,7 +12,7 @@ set(CMAKE_CXX_STANDARD 20)
 # ---------------------------------------------------------
 add_subdirectory(dependencies/palace-engine)
 
-add_executable(demo_01_window_spawning WIN32
+add_executable(demo_01_window_spawning WIN32 MACOSX_BUNDLE
     # Source files
     demos/01_window_spawning_demo/src/main.cpp
 )
