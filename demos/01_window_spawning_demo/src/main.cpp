@@ -6,6 +6,9 @@ int palaceMain(palace::ApplicationContext *context) {
     constexpr int WindowWidth = 256;
     constexpr int WindowHeight = 256;
 
+    palace::VulkanVersion vulkanVersion = context->highestSupportedVulkanVersion();
+    palace::GraphicsContext *graphicsContext = context->createVulkanContext(vulkanVersion);
+
     palace::WindowServer *windowServer = context->windowServer();
     windowServer->updateDisplayDevices();
     const size_t displayDeviceCount = windowServer->displayDevices().size();

@@ -22,6 +22,6 @@ target_include_directories(demo_01_window_spawning PUBLIC
 )
 
 target_link_libraries(demo_01_window_spawning PRIVATE
-    palace-engine
+    palace-engine-base
     palace-definitions
     palace-compile-options)
